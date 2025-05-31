@@ -5,11 +5,7 @@ import mysql
 
 from config import settings
 from sqlalchemy import create_engine
-
-DATABASE_URL = DATABASE_URL = (
-    f"mysql+mysqlconnector://{settings.DATABASE_USERNAME}"
-    f"@{settings.DATABASE_HOSTNAME}:{settings.DATABASE_PORT}/{settings.DATABASE_NAME}"
-)
+DATABASE_URL = f'mysql+mysqlconnector://{settings.DATABASE_USERNAME}@{settings.DATABASE_HOSTNAME}:{settings.DATABASE_PORT}/{settings.DATABASE_NAME}'
 
 
 engine = create_engine(DATABASE_URL)
