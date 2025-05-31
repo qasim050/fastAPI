@@ -10,7 +10,6 @@ DATABASE_URL = f'mysql+mysqlconnector://{settings.DATABASE_USERNAME}@{settings.D
 
 engine = create_engine(DATABASE_URL)
 
-engine = create_engine(f'{settings.DATABASE_USERNAME}+mysqlconnector://root:@/{settings.DATABASE_NAME}')
 local_session = sessionmaker(autoflush=False,autocommit = False,bind=engine)
 Base = declarative_base()
 
