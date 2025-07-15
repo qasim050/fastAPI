@@ -10,3 +10,11 @@ jobs:
         uses: actions/checkout@v2
       - name: say hi to qasim
         run: echo "hi gasim"
+      - name: install python 3.8
+        uses: actions/setup-python@v2
+        whth:
+          python-version: "3.8"
+      - name: update pip
+        run: python -m pip install --upgrade pip
+      - name: install all depend
+        run: pip istall -r requirements.txt
