@@ -1,0 +1,12 @@
+name: build and deploy code
+
+on: [puch, pull_request]
+
+jops:
+  jop1:
+    runs-on: ubentu-latest
+    steps:
+      - name: pulling git repo
+        uses: actions/checkout@v2
+      - name: sey hay to qasim
+        run: echo "hay gasim"

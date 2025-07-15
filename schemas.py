@@ -15,17 +15,18 @@ class UserOut(BaseModel):
         from_attributes = True
         
 class PostCreate(PostBase):
+    published: bool = True
     pass
 
 class ReturnPost(PostBase):
     id: int
     user_id: int
-    published: bool
+    published: bool 
     owner : UserOut
     class Config:
         from_attributes = True
 class PostOut(BaseModel):
-    Post: PostBase
+    Post: ReturnPost
     votes : int
     class Config:
         from_attributes = True

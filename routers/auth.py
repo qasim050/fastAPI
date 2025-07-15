@@ -13,12 +13,20 @@ router = APIRouter(tags=["authentication"])
 
 
 @router.post("/login",response_model= schemas.Token)
-async def login(user_cardentials: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
-    user = db.query(models.User).filter(models.User.email == user_cardentials.username).first()
+async def login(user_credentials: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+    user = db.query(models.User).filter(models.User.email == user_credentials.username).first()
+    
+    # Input validation
+    if not user_credentials.username or not user_credentials.password:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail="Email and password are required"
+        )
+
     if not user:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,
                             detail="invalid cardntials")
-    if not utils.verify(user_cardentials.password,user.password):
+    if not utils.verify(user_credentials.password,user.password):
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,
                             detail="invalid cardntials")
         

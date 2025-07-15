@@ -21,7 +21,7 @@ router = APIRouter(
 # Endpoint to get postss
 # @router.get("/",response_model= List[schemas.ReturnPost])
 @router.get("/",response_model= List[schemas.PostOut])
-async def get_posts(db : Session = Depends(get_db),limit:int = 10,skip:int = 0,searsh:Optional[str]=""):
+async def get_posts(db : Session = Depends(get_db),  current_user: int = Depends(oauth2.get_current_user),limit:int = 10,skip:int = 0,searsh:Optional[str]=""):
     # mycursor.execute("SELECT * FROM posts")
     # post = mycursor.fetchall()
     result = db.query(models.Post,func.count(models.Vote.post_id).label("votes")).join(models.Vote,models.Post.id == models.Vote.post_id,isouter=True).group_by(models.Post.id).filter(models.Post.title.contains(searsh)).limit(limit).offset(skip).all()
@@ -42,12 +42,13 @@ async def create_posts(post: schemas.PostCreate,db : Session = Depends(get_db),
     db.add(new_post)
     db.commit()
     db.refresh(new_post)
-    return new_post
+    post_with_owner = db.query(models.Post).filter(models.Post.id == new_post.id).first()
+    return post_with_owner
 
 
 
 @router.get("/{id}",response_model=schemas.PostOut)
-async def get_posts(id:int,db : Session = Depends(get_db)):
+async def get_posts(id:int,db : Session = Depends(get_db) , current_user: int = Depends(oauth2.get_current_user)):
     # mycursor.execute("SELECT * FROM posts WHERE id = %s" ,(str(id),))
     # post = mycursor.fetchone()
     # post = db.query(models.Post).filter(models.Post.id == id).first()
