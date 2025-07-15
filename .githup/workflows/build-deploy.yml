@@ -1,6 +1,6 @@
 name: build and deploy code
 
-on: [puch, pull_request]
+on: [push, pull_request]
 
 jops:
   jop1:
