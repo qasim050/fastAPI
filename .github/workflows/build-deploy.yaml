@@ -49,7 +49,7 @@ jobs:
         run: pip install pytest 
 
       - name: Run tests
-        run: pytest tests/test_posts.py --disable-warnings -v -s
+        run: pytest tests --disable-warnings -v -s
         env:
           PYTHONPATH: ${{ github.workspace }}
           DATABASE_HOSTNAME: 127.0.0.1
