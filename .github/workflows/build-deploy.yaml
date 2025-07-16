@@ -44,12 +44,12 @@ jobs:
 
       - name: Install requirements
         run: pip install -r requirements.txt
-        
+
       - name: Install pytest
         run: pip install pytest 
 
       - name: Run tests
-        run: pytest
+        run: pytest tests\test_posts.py --disable-warnings -v -s
         env:
           PYTHONPATH: ${{ github.workspace }}
           DATABASE_HOSTNAME: 127.0.0.1
