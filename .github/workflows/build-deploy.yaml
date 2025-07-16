@@ -33,11 +33,6 @@ jobs:
       ACCESS_TOKEN_EXPIRE_MINUTES: 30
 
     steps:
-      - name: Run tests
-        run: pytest
-        env:
-          PYTHONPATH: ${{ github.workspace }}
-
       - name: Checkout repo
         uses: actions/checkout@v2
 
@@ -57,3 +52,5 @@ jobs:
 
       - name: Run tests
         run: pytest
+        env:
+          PYTHONPATH: ${{ github.workspace }}
