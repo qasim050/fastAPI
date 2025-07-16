@@ -11,9 +11,9 @@ jobs:
         image: mysql:8.0
         env:
           MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: test_db         # DB اللي هنشتغل عليها
-          MYSQL_USER: test_user           # User غير الـ root
-          MYSQL_PASSWORD: test_pass       # Password بتاع الـ User
+          MYSQL_DATABASE: test_db
+          MYSQL_USER: test_user
+          MYSQL_PASSWORD: test_pass
         ports:
           - 3306:3306
         options: >-
@@ -23,11 +23,11 @@ jobs:
           --health-retries=5
 
     env:
-      DATABASE_HOSTNAME: 127.0.0.1        # خلي الاتصال على localhost
+      DATABASE_HOSTNAME: 127.0.0.1
       DATABASE_PORT: 3306
-      DATABASE_NAME: test_db              # نفس الـ DB اللي فوق
-      DATABASE_USERNAME: test_user        # نفس الـ User اللي فوق
-      DATABASE_PASSWORD: test_pass        # نفس الـ Password اللي فوق
+      DATABASE_NAME: test_db
+      DATABASE_USERNAME: test_user
+      DATABASE_PASSWORD: test_pass
       SECRET_KEY: 09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7
       ALGORITHM: HS256
       ACCESS_TOKEN_EXPIRE_MINUTES: 1
@@ -54,3 +54,8 @@ jobs:
         run: pytest
         env:
           PYTHONPATH: ${{ github.workspace }}
+          DATABASE_HOSTNAME: 127.0.0.1
+          DATABASE_PORT: 3306
+          DATABASE_NAME: test_db
+          DATABASE_USERNAME: test_user
+          DATABASE_PASSWORD: test_pass
