@@ -24,7 +24,7 @@ try:
     host="localhost",
     user="root",
     passwd="",
-    database="api",
+    database=settings.DATABASE_NAM,
 )
     mycursor = myconnect.cursor()
     print("good s")
