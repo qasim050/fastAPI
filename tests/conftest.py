@@ -9,7 +9,7 @@ from database import get_db ,Base,engine
 import pytest
 from oauth2 import create_access_token
 
-DATABASE_URL = f'mysql+mysqlconnector://{settings.DATABASE_USERNAME}@{settings.DATABASE_HOSTNAME}:{settings.DATABASE_PORT}/{settings.DATABASE_NAME}_test'
+DATABASE_URL = f'mysql+mysqlconnector://{settings.DATABASE_USERNAME}@{settings.DATABASE_HOSTNAME}:{settings.DATABASE_PORT}/{settings.DATABASE_NAME}'
 
 
 
