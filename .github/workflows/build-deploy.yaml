@@ -50,6 +50,11 @@ jobs:
       - name: Install pytest
         run: pip install pytest
 
+      - name: Debug env
+        run: |
+          echo "DB USER: $DATABASE_USERNAME"
+          echo "DB PASS: $DATABASE_PASSWORD"
+
       - name: Run tests
         run: pytest
         env:
